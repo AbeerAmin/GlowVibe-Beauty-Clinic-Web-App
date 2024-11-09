@@ -19,7 +19,7 @@ GlowVibe was developed to solve the frustrations that both beauty clinic clients
 - **Rofida Ramadan** - Developer
   - **Responsibilities**: Building the frontend, integrating with the backend, handling UI/UX tasks.
  
-  - **Manar Mamdouh** - Developer
+- **Manar Mamdouh** - Developer
   - **Responsibilities**: Building the frontend, integrating with the backend, handling UI/UX tasks.
 - **Abeer Amin** - Developer
   - **Responsibilities**: Backend development, database design, and integrating third-party APIs for appointment management.
