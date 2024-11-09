@@ -38,22 +38,6 @@ The Daily Stand-up is a short, focused meeting held every day of the Sprint. Its
 - **Stand up**: This helps keep the meeting short and focused.
 
 ---
-
-## Example of a Daily Stand-up
-- **Alice**:  
-   _"Yesterday, I finalized the registration page design. Today, I will start working on the profile page. No blockers."_
-
-- **Bob**:  
-   _"Yesterday, I completed the user authentication API. Today, I will integrate it with the registration form. Blocker: I need clarification on the login flow."_
-
-- **Charlie**:  
-   _"Yesterday, I finished the database schema for the user table. Today, I'll be working on connecting the front-end to the backend. Blocker: None."_
-
-- **David**:  
-   _"Yesterday, I wrote tests for the registration form. Today, I’ll be reviewing and deploying the registration API. No blockers."_
-
----
-
 ## Tips for Effective Stand-ups
 - Encourage all team members to speak directly and avoid unnecessary explanations.
 - Focus on progress toward the Sprint Goal, not individual tasks.
