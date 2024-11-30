@@ -32,28 +32,35 @@ Analytics dashboards for tracking user activity and revenue.
 ## Installation
 
 Follow these steps to install and set up GlowVibe locally:
+**1. Clone the Repository**
 
-1. Clone the Repository
-
- git clone https://github.com/AbeerAmin/GlowVibe-Beauty-Clinic-Web-App/tree/main
+    git clone https://github.com/AbeerAmin/GlowVibe-Beauty-Clinic-Web-App/tree/main
  
- cd GlowVibe-Beauty-Clinic-Web-App
+    cd GlowVibe-Beauty-Clinic-Web-App
  
 **2. Backend Setup**
+
 1. Navigate to the backend directory:
    cd backend
 2. Install dependencies:
    npm install
 3. Configure environment variables:
-  * Create a .env file and add:
+    **Create a .env file and add:**
+   
     PORT=5000
+   
     MONGO_URI=your_mongodb_connection_string
+   
     JWT_SECRET=your_jwt_secret_key
+   
     SENDGRID_API_KEY=your_sendgrid_api_key
+   
     TWILIO_ACCOUNT_SID=your_twilio_account_sid
+   
     TWILIO_AUTH_TOKEN=your_twilio_auth_token
-4. Start the backend server:
-  npm start
+   
+ 4. Start the backend server:
+    npm start
   
 **3. Frontend Setup**
 1. Navigate to the frontend directory:
@@ -67,11 +74,13 @@ The application frontend will run at http://localhost:3000, and the backend will
 
 
 ## Usage
+
 **For Users**
 Register a new account and log in.
 Explore the catalog of services and choose the desired beauty treatments.
 Schedule consultations or appointments with professionals.
 Manage bookings and receive email/SMS notifications for reminders.
+
 **For Admins**
 Log in with admin credentials.
 Add, update, or remove services in the catalog.
@@ -128,7 +137,7 @@ Example Sprint Backlog items:
 - **Sprint Review**: At the end of each Sprint, we demonstrate the work completed to stakeholders and gather feedback.
 - **Sprint Retrospective**: A meeting to reflect on the Sprint, identify what went well, and discuss opportunities for improvement.
 
-### Features
+## Features
 * Real-Time Booking: Instantly book and confirm appointments.
 * Notifications: Automated email and SMS reminders for appointments.
 * Dynamic Service Management: Update service availability and pricing in real-time.
@@ -136,9 +145,9 @@ Example Sprint Backlog items:
 * Analytics Dashboard: Track revenue and user activity in real-time.
 
   
-### Contributing
+## Contributing
 
-# We welcome contributions from the community! To contribute:
+**We welcome contributions from the community! To contribute:**
 
 1. Fork the repository.
 2. Create a new branch:
