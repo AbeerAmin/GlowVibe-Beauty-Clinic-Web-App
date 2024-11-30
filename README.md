@@ -33,18 +33,18 @@ Analytics dashboards for tracking user activity and revenue.
 
 Follow these steps to install and set up GlowVibe locally:
 
-# 1. Clone the Repository
+1. Clone the Repository
 
  git clone https://github.com/AbeerAmin/GlowVibe-Beauty-Clinic-Web-App/tree/main
  
  cd GlowVibe-Beauty-Clinic-Web-App
  
 ### 2. Backend Setup
-# 1.Navigate to the backend directory:
+1. Navigate to the backend directory:
    cd backend
-# 2. Install dependencies:
+2. Install dependencies:
    npm install
-# 3.Configure environment variables:
+3. Configure environment variables:
   * Create a .env file and add:
     PORT=5000
     MONGO_URI=your_mongodb_connection_string
@@ -52,15 +52,15 @@ Follow these steps to install and set up GlowVibe locally:
     SENDGRID_API_KEY=your_sendgrid_api_key
     TWILIO_ACCOUNT_SID=your_twilio_account_sid
     TWILIO_AUTH_TOKEN=your_twilio_auth_token
-# 4.Start the backend server:
+4. Start the backend server:
   npm start
   
 ### 3. Frontend Setup
-# 1.Navigate to the frontend directory:
+1. Navigate to the frontend directory:
   cd ../frontend
-# 2.Install dependencies:
+2. Install dependencies:
   npm install
-# 3.Start the development server:
+3. Start the development server:
   npm start
   
 The application frontend will run at http://localhost:3000, and the backend will run at http://localhost:5000.
