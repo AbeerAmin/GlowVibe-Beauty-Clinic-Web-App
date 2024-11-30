@@ -35,7 +35,7 @@ Follow these steps to install and set up GlowVibe locally:
 
 # 1. Clone the Repository
 
- git clone https://github.com/your-username/GlowVibe-Beauty-Clinic-Web App.git
+ git clone https://github.com/AbeerAmin/GlowVibe-Beauty-Clinic-Web-App/tree/main
  
  cd GlowVibe-Beauty-Clinic-Web-App
  
