@@ -29,7 +29,7 @@ Integration with email/SMS notification services.
 GDPR/HIPAA-compliant security for personal and medical data.
 Analytics dashboards for tracking user activity and revenue.
 
-### Installation
+## Installation
 
 Follow these steps to install and set up GlowVibe locally:
 
@@ -39,7 +39,7 @@ Follow these steps to install and set up GlowVibe locally:
  
  cd GlowVibe-Beauty-Clinic-Web-App
  
-### 2. Backend Setup
+**2. Backend Setup**
 1. Navigate to the backend directory:
    cd backend
 2. Install dependencies:
@@ -55,7 +55,7 @@ Follow these steps to install and set up GlowVibe locally:
 4. Start the backend server:
   npm start
   
-### 3. Frontend Setup
+**3. Frontend Setup**
 1. Navigate to the frontend directory:
   cd ../frontend
 2. Install dependencies:
@@ -66,13 +66,13 @@ Follow these steps to install and set up GlowVibe locally:
 The application frontend will run at http://localhost:3000, and the backend will run at http://localhost:5000.
 
 
-### Usage
-# For Users
+## Usage
+**For Users**
 Register a new account and log in.
 Explore the catalog of services and choose the desired beauty treatments.
 Schedule consultations or appointments with professionals.
 Manage bookings and receive email/SMS notifications for reminders.
-# For Admins
+**For Admins**
 Log in with admin credentials.
 Add, update, or remove services in the catalog.
 Monitor appointments and resolve scheduling conflicts.
