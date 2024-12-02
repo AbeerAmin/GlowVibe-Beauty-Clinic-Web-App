@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Session</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f4a9c3;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #fff;
+            text-decoration: none;
+        }
+        .doctor-card {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+        .doctor-card img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .doctor-info {
+            text-align: left;
+            margin-left: 20px;
+        }
+        .doctor-info h2 {
+            margin: 0;
+        }
+        .appointment-btn {
+            background-color: #f4a9c3;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .appointment-btn:hover {
+            background-color: #e389b7;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <a href="index-2.html">Home</a>
+            <!-- <a href="auth.html">Sign In / Sign Up</a> -->
+            <a href="session.html">Session</a> <!-- Link to Session page -->
+        </nav>
+    </header>
+
+    <!-- Doctor Info Section -->
+    <main>
+        <h1 style="text-align: center; margin-top: 20px;">Book a Session with Our Doctors</h1>
+
+        <!-- Doctor 1 -->
+        <div class="doctor-card">
+            <img src="C:\Users\RofaR\Downloads\WhatsApp Image 2024-11-30 at 17.19.28_edec7181.jpg" alt="Doctor 1">
+            <div class="doctor-info">
+                <h2>Dr. Rima Seliman</h2>
+                <p><strong>Specialization:</strong> Self-Care Treatments</p>
+                <p><strong>Experience:</strong> 10 years in beauty and wellness</p>
+                <p><strong>Services Offered:</strong> Skin care, facial treatments, and anti-aging services.</p>
+                <!-- Appointment button that opens the modal -->
+                <button class="appointment-btn" onclick="openModal(1)">Make Appointment</button>
+            </div>
+        </div>
+
+        <!-- Doctor 2 -->
+        <div class="doctor-card">
+            <img src="C:\Users\RofaR\Downloads\WhatsApp Image 2024-11-30 at 17.19.29_8eefde82.jpg" alt="Doctor 2">
+            <div class="doctor-info">
+                <h2>Dr. Ziad Seliman</h2>
+                <p><strong>Specialization:</strong> Cosmetic Clinic</p>
+                <p><strong>Experience:</strong> 8 years in cosmetic surgery</p>
+                <p><strong>Services Offered:</strong> Cosmetic surgeries, hair restoration, and body sculpting.</p>
+                <!-- Appointment button that opens the modal -->
+                <button class="appointment-btn" onclick="openModal(2)">Make Appointment</button>
+            </div>
+        </div>
+
+        <!-- Doctor 3 -->
+        <div class="doctor-card">
+            <img src="C:\Users\RofaR\Downloads\WhatsApp Image 2024-11-30 at 17.19.29_14996723.jpg" alt="Doctor 3">
+            <div class="doctor-info">
+                <h2>Dr. Hossam Abou-el Atta</h2>
+                <p><strong>Specialization:</strong> Cosmetic and Wellness</p>
+                <p><strong>Experience:</strong> 6 years in cosmetic treatments</p>
+                <p><strong>Services Offered:</strong> Laser treatments, wellness consultations, and nutrition planning.</p>
+                <!-- Appointment button that opens the modal -->
+                <button class="appointment-btn" onclick="openModal(3)">Make Appointment</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal for Appointment -->
+    <div id="appointmentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Book Appointment</h2>
+            <form action="submit_appointment.php" method="POST">
+                <label for="doctorName">Doctor:</label>
+                <input type="text" id="doctorName" name="doctorName" disabled><br>
+
+                <label for="appointment_date">Select a Date:</label>
+                <input type="date" id="appointment_date" name="appointment_date" required><br>
+
+                <label for="appointment_time">Select a Time:</label>
+                <input type="time" id="appointment_time" name="appointment_time" required><br>
+
+                <label for="patient_name">Your Name:</label>
+                <input type="text" id="patient_name" name="patient_name" required><br>
+
+                <label for="patient_contact">Your Contact:</label>
+                <input type="text" id="patient_contact" name="patient_contact" required><br>
+
+                <button type="submit">Book Appointment</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to open modal and display doctor information
+        function openModal(doctorId) {
+            var modal = document.getElementById("appointmentModal");
+            var doctorName = document.getElementById("doctorName");
+
+            // Set doctor name dynamically
+            if (doctorId === 1) {
+                doctorName.value = "Dr. Anna Smith";
+            } else if (doctorId === 2) {
+                doctorName.value = "Dr. John Doe";
+            } else if (doctorId === 3) {
+                doctorName.value = "Dr. Lisa Green";
+            }
+
+            modal.style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            var modal = document.getElementById("appointmentModal");
+            modal.style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
