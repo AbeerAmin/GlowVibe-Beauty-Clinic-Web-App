@@ -22,5 +22,5 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t abeer177/glowvibeapp:staging .
+          docker build -t abeer177/glowvibeapp:staging ./.github/workflows/Dockerfile
           docker push abeer177/glowvibeapp:staging
