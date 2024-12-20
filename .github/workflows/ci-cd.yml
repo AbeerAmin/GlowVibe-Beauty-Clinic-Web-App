@@ -20,7 +20,14 @@ jobs:
         run: |
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-      - name: Build and Push Docker Image
+      - name: Build Docker image
         run: |
-          docker build -t abeer177/glowvibeapp:staging ./.github/workflows/Dockerfile
-          docker push abeer177/glowvibeapp:staging
+          docker build -f .github/workflows/Dockerfile -t ***/glowvibeapp:staging .
+      
+      - name: Push Docker image to Docker Hub
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+          docker push ***/glowvibeapp:staging
