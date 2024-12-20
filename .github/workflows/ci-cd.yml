@@ -1,26 +1,59 @@
-name: CI/CD Workflow
+name: Build and Deploy Docker Image
 
 on:
   push:
     branches:
-      - main
-      - staging
+      - main   # Trigger on push to the 'main' branch
+  pull_request:
+    branches:
+      - main   # Trigger on pull request to the 'main' branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    # Checkout code from the repository
+    - name: Checkout Repository
+      uses: actions/checkout@v3
 
-      - name: Build Docker image
-        run: |
-          docker build -f .github/workflows/Dockerfile -t mydockerhubuser/glowvibeapp:staging .
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
 
-      - name: Push Docker image to Docker Hub
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run: |
-          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-          docker push mydockerhubuser/glowvibeapp:staging
+    - name: Log in to DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build Docker image
+      run: |
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/glowvibeapp:staging .
+
+    - name: Tag Docker image
+      run: |
+        docker tag ${{ secrets.DOCKER_USERNAME }}/glowvibeapp:staging ${{ secrets.DOCKER_USERNAME }}/glowvibeapp:latest
+
+    - name: Push Docker image to DockerHub
+      run: |
+        docker push ${{ secrets.DOCKER_USERNAME }}/glowvibeapp:staging
+        docker push ${{ secrets.DOCKER_USERNAME }}/glowvibeapp:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build  # Make sure deployment happens after the build
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Log in to DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Deploy to Production
+      run: |
+        # Example: Run a deployment command on your cloud server
+        ssh -i ${{ secrets.SSH_PRIVATE_KEY }} user@production-server "docker pull ${{ secrets.DOCKER_USERNAME }}/glowvibeapp:latest && docker run -d -p 80:3000 ${{ secrets.DOCKER_USERNAME }}/glowvibeapp:latest"
