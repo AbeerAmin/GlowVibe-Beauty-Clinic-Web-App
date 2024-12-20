@@ -1,0 +1,19 @@
+{
+  "name": "glowvibeapp",
+  "version": "1.0.0",
+  "description": "A sample Node.js application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "keywords": []
+}
