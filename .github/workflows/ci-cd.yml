@@ -1,59 +1,75 @@
-name: Build and Deploy Docker Image
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
-      - main   # Trigger on push to the 'main' branch
-  pull_request:
-    branches:
-      - main   # Trigger on pull request to the 'main' branch
+      - main
+      - staging
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout code from the repository
-    - name: Checkout Repository
+    # Checkout code
+    - name: Checkout code
       uses: actions/checkout@v3
 
+    # Set up Docker Buildx
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
-    - name: Log in to DockerHub
+    # Log in to Docker Hub
+    - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
+    # Build the Docker image
     - name: Build Docker image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/glowvibeapp:staging .
+        docker build -t abeer177/glowvibeapp:staging .
 
-    - name: Tag Docker image
+    # Push to Docker Hub (Staging)
+    - name: Push Docker image to Docker Hub (Staging)
       run: |
-        docker tag ${{ secrets.DOCKER_USERNAME }}/glowvibeapp:staging ${{ secrets.DOCKER_USERNAME }}/glowvibeapp:latest
-
-    - name: Push Docker image to DockerHub
-      run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/glowvibeapp:staging
-        docker push ${{ secrets.DOCKER_USERNAME }}/glowvibeapp:latest
+        docker tag abeer177/glowvibeapp:staging abeer177/glowvibeapp:latest
+        docker push abeer177/glowvibeapp:staging
+        docker push abeer177/glowvibeapp:latest
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build  # Make sure deployment happens after the build
+    needs: build
+    if: github.ref == 'refs/heads/main'
 
     steps:
-    - name: Checkout Repository
+    # Checkout code
+    - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Log in to DockerHub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-
+    # Deploy to Production
     - name: Deploy to Production
       run: |
-        # Example: Run a deployment command on your cloud server
-        ssh -i ${{ secrets.SSH_PRIVATE_KEY }} user@production-server "docker pull ${{ secrets.DOCKER_USERNAME }}/glowvibeapp:latest && docker run -d -p 80:3000 ${{ secrets.DOCKER_USERNAME }}/glowvibeapp:latest"
+        echo "Deploying to production..."
+        # Add your deployment scripts or commands here
+        # Example:
+        # docker run -d -p 80:3000 abeer177/glowvibeapp:latest
+
+  staging_deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/staging'
+
+    steps:
+    # Checkout code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Deploy to Staging
+    - name: Deploy to Staging
+      run: |
+        echo "Deploying to staging..."
+        # Add your staging deployment commands here
+        # Example:
+        # docker run -d -p 80:3000 abeer177/glowvibeapp:staging
