@@ -1,0 +1,15 @@
+# Use an Nginx base image
+FROM nginx:latest
+
+# Remove the default Nginx content
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy project files
+COPY . /usr/share/nginx/html/
+
+# Copy custom Nginx configuration
+
+RUN chmod -R 755 /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
